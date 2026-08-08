@@ -666,9 +666,12 @@
 
         AFRAME.registerComponent('medilens-app', {
             init: function () {
+                document.querySelector('#amlodipine-strip').setAttribute('material', `src: ${amlodipineTexture}; roughness: 0.3; metalness: 0.3;`);
                 document.querySelector('#metformin-bottle').setAttribute('material', `src: ${metforminTexture}; roughness: 0.4;`);
+                document.querySelector('#amoxicillin-strip').setAttribute('material', `src: ${amoxicillinTexture}; roughness: 0.3; metalness: 0.3;`);
                 document.querySelector('#atorvastatin-bottle').setAttribute('material', `src: ${atorvastatinTexture}; roughness: 0.4;`);
-                
+                document.querySelector('#prescription-plane').setAttribute('material', `src: ${prescriptionTexture}; roughness: 0.8;`);
+
                 this.clockPlane = document.querySelector('#digital-clock-plane');
                 this.updateClock();
                 setInterval(() => this.updateClock(), 1000);
@@ -804,21 +807,13 @@
             <a-cylinder position="-0.7 -0.42 0.38" radius="0.03" height="0.76" color="#1e293b"></a-cylinder>
             <a-cylinder position="0.7 -0.42 0.38" radius="0.03" height="0.76" color="#1e293b"></a-cylinder>
 
-            <!-- AMLODIPINE BLISTER STRIP -->
-            <a-entity id="amlodipine-group"
-                position="-0.52 0.045 0.04"
-                rotation="0 15 0">
 
-                <!-- Blister backing -->
-                <a-box id="amlodipine-strip"
-                    data-med-id="amlodipine"
-                    class="raycastable"
-                    width="0.30"
-                    height="0.018"
-                    depth="0.16"
-                    color="#f1f5f9"
-                    shadow="cast: true"
-                    medicine-item="
+            <!-- ========================================== -->
+            <!-- MEDICINE OBJECT 1: AMLODIPINE 5mg (X: -0.55) -->
+            <!-- ========================================== -->
+            <a-entity id="amlodipine-group" position="-0.55 0.02 0.05" rotation="0 15 0">
+                <a-box id="amlodipine-strip" data-med-id="amlodipine" class="raycastable" width="0.22" height="0.02"
+                    depth="0.14" shadow="cast: true" medicine-item="
                         idKey: amlodipine;
                         name: Amlodipine 5mg;
                         dosage: 1 tablet;
@@ -830,56 +825,12 @@
                     ">
                 </a-box>
 
-                <!-- Pills / blisters -->
-                <a-sphere position="-0.10 0.015 -0.05"
-                    radius="0.025"
-                    color="#e2e8f0">
-                </a-sphere>
+                <a-ring class="med-ring" position="0 0.015 0" rotation="-90 0 0" radius-inner="0.12" radius-outer="0.135" color="#22c55e"
+                    material="shader: flat; opacity: 0.6"></a-ring>
 
-                <a-sphere position="0 0.015 -0.05"
-                    radius="0.025"
-                    color="#e2e8f0">
-                </a-sphere>
-
-                <a-sphere position="0.10 0.015 -0.05"
-                    radius="0.025"
-                    color="#e2e8f0">
-                </a-sphere>
-
-                <a-sphere position="-0.10 0.015 0.05"
-                    radius="0.025"
-                    color="#e2e8f0">
-                </a-sphere>
-
-                <a-sphere position="0 0.015 0.05"
-                    radius="0.025"
-                    color="#e2e8f0">
-                </a-sphere>
-
-                <a-sphere position="0.10 0.015 0.05"
-                    radius="0.025"
-                    color="#e2e8f0">
-                </a-sphere>
-
-                <!-- Correct medicine ring -->
-                <a-ring class="med-ring"
-                    position="0 0.025 0"
-                    rotation="-90 0 0"
-                    radius-inner="0.14"
-                    radius-outer="0.155"
-                    color="#22c55e"
-                    material="shader: flat; opacity: 0.6">
-                </a-ring>
-
-                <a-text class="med-label"
-                    value="Amlodipine 5mg"
-                    position="0 0.25 0"
-                    align="center"
-                    width="1.4"
-                    color="#22c55e"
-                    material="shader: flat; depthTest: false">
+                <a-text class="med-label" value="✓ Amlodipine 5mg" position="0 0.28 0" align="center" width="1.4"
+                    color="#22c55e" material="shader: flat; depthTest: false">
                 </a-text>
-
             </a-entity>
 
 
@@ -904,27 +855,18 @@
                 <a-ring class="med-ring" position="0 0.005 0" rotation="-90 0 0" radius-inner="0.07" radius-outer="0.085" color="#ef4444"
                     material="shader: flat; opacity: 0.6"></a-ring>
 
-                <a-text class="med-label" value="⚠ Wrong Medicine" position="0 0.28 0" align="center" width="1.4"
+                <a-text class="med-label" value="⚠ Metformin 500mg" position="0 0.28 0" align="center" width="1.4"
                     color="#ef4444" material="shader: flat; depthTest: false">
                 </a-text>
             </a-entity>
 
 
-            <!-- AMOXICILLIN BLISTER STRIP -->
-            <a-entity id="amoxicillin-group"
-                position="0.20 0.045 0.08"
-                rotation="0 -18 0">
-
-                <!-- Blister backing -->
-                <a-box id="amoxicillin-strip"
-                    data-med-id="amoxicillin"
-                    class="raycastable"
-                    width="0.30"
-                    height="0.018"
-                    depth="0.16"
-                    color="#f8fafc"
-                    shadow="cast: true"
-                    medicine-item="
+            <!-- ========================================== -->
+            <!-- MEDICINE OBJECT 3: AMOXICILLIN 250mg (X: 0.20) -->
+            <!-- ========================================== -->
+            <a-entity id="amoxicillin-group" position="0.20 0.02 0.1" rotation="0 -25 0">
+                <a-box id="amoxicillin-strip" data-med-id="amoxicillin" class="raycastable" width="0.2" height="0.02"
+                    depth="0.13" shadow="cast: true" medicine-item="
                         idKey: amoxicillin;
                         name: Amoxicillin 250mg;
                         dosage: Discard & do not take;
@@ -936,74 +878,12 @@
                     ">
                 </a-box>
 
-                <!-- Red/white capsules -->
-                <a-cylinder
-                    position="-0.10 0.025 -0.05"
-                    radius="0.018"
-                    height="0.055"
-                    rotation="0 0 90"
-                    color="#ef4444">
-                </a-cylinder>
+                <a-ring class="med-ring" position="0 0.01 0" rotation="-90 0 0" radius-inner="0.11" radius-outer="0.125" color="#ef4444"
+                    material="shader: flat; opacity: 0.6"></a-ring>
 
-                <a-cylinder
-                    position="0 0.025 -0.05"
-                    radius="0.018"
-                    height="0.055"
-                    rotation="0 0 90"
-                    color="#ffffff">
-                </a-cylinder>
-
-                <a-cylinder
-                    position="0.10 0.025 -0.05"
-                    radius="0.018"
-                    height="0.055"
-                    rotation="0 0 90"
-                    color="#ef4444">
-                </a-cylinder>
-
-                <a-cylinder
-                    position="-0.10 0.025 0.05"
-                    radius="0.018"
-                    height="0.055"
-                    rotation="0 0 90"
-                    color="#ffffff">
-                </a-cylinder>
-
-                <a-cylinder
-                    position="0 0.025 0.05"
-                    radius="0.018"
-                    height="0.055"
-                    rotation="0 0 90"
-                    color="#ef4444">
-                </a-cylinder>
-
-                <a-cylinder
-                    position="0.10 0.025 0.05"
-                    radius="0.018"
-                    height="0.055"
-                    rotation="0 0 90"
-                    color="#ffffff">
-                </a-cylinder>
-
-                <!-- Expired medicine ring -->
-                <a-ring class="med-ring"
-                    position="0 0.025 0"
-                    rotation="-90 0 0"
-                    radius-inner="0.14"
-                    radius-outer="0.155"
-                    color="#ef4444"
-                    material="shader: flat; opacity: 0.6">
-                </a-ring>
-
-                <a-text class="med-label"
-                    value="Amoxicillin 250mg"
-                    position="0 0.25 0"
-                    align="center"
-                    width="1.4"
-                    color="#ef4444"
-                    material="shader: flat; depthTest: false">
+                <a-text class="med-label" value="❌ Amoxicillin 250mg" position="0 0.28 0" align="center" width="1.4"
+                    color="#ef4444" material="shader: flat; depthTest: false">
                 </a-text>
-
             </a-entity>
 
 
@@ -1028,174 +908,23 @@
                 <a-ring class="med-ring" position="0 0.005 0" rotation="-90 0 0" radius-inner="0.07" radius-outer="0.085" color="#f97316"
                     material="shader: flat; opacity: 0.6"></a-ring>
 
-                <a-text class="med-label" value="⏰ Tonight 9 PM" position="0 0.28 0" align="center" width="1.4"
+                <a-text class="med-label" value="⏰ Atorvastatin 10mg" position="0 0.28 0" align="center" width="1.4"
                     color="#f97316" material="shader: flat; depthTest: false">
                 </a-text>
             </a-entity>
 
 
             <!-- SCENE PROPS: GLASS OF WATER -->
-            <a-text
-                value="Glass of Water"
-                position="-0.68 0.28 0.18"
-                align="center"
-                width="1.0"
-                color="#3b82f6"
-                rotation="0 0 0"
-                material="shader: flat; depthTest: false">
-            </a-text>
-            <a-entity id="water-glass-group"
-                position="-0.68 0.13 0.18">
-
-                <!-- Glass -->
-                <a-cylinder
-                    radius="0.055"
-                    height="0.16"
-                    color="#ffffff"
-                    material="
-                        opacity: 0.32;
-                        transparent: true;
-                        roughness: 0.05;
-                        metalness: 0.05;
-                    ">
-                </a-cylinder>
-
-                <!-- Water -->
-                <a-cylinder
-                    position="0 -0.015 0"
-                    radius="0.048"
-                    height="0.12"
-                    color="#3b82f6"
-                    material="
-                        opacity: 0.75;
-                        transparent: true;
-                        roughness: 0.05;
-                        metalness: 0;
-                    ">
-                </a-cylinder>
-
-                <!-- Water surface -->
-                <a-cylinder
-                    position="0 0.045 0"
-                    radius="0.048"
-                    height="0.006"
-                    color="#3b82f6"
-                    material="
-                        opacity: 0.9;
-                        transparent: true;
-                    ">
-                </a-cylinder>
-
+            <a-entity id="water-glass-group" position="-0.7 0.1 -0.2">
+                <a-cylinder radius="0.045" height="0.14" color="#ffffff"
+                    material="opacity: 0.35; transparent: true; roughness: 0.1; metalness: 0.8"></a-cylinder>
+                <a-cylinder position="0 -0.015 0" radius="0.042" height="0.1" color="#3b82f6"
+                    material="opacity: 0.6; transparent: true; roughness: 0.2"></a-cylinder>
             </a-entity>
 
-            <!-- ========================================== -->
-            <!-- PRESCRIPTION SHEET -->
-            <!-- ========================================== -->
-
-            <a-entity
-                id="prescription-group"
-                position="0 0.035 0.42"
-                rotation="-90 0 0">
-
-                <!-- White paper -->
-                <a-plane
-                    id="prescription-plane"
-                    width="0.34"
-                    height="0.25"
-                    color="#ffffff"
-                    material="shader: flat"
-                    shadow="cast: true">
-                </a-plane>
-
-                <!-- Blue border -->
-                <a-plane
-                    position="0 0 0.002"
-                    width="0.31"
-                    height="0.22"
-                    color="#3b82f6"
-                    material="shader: flat">
-                </a-plane>
-
-                <!-- Inner white paper -->
-                <a-plane
-                    position="0 0 0.004"
-                    width="0.295"
-                    height="0.205"
-                    color="#ffffff"
-                    material="shader: flat">
-                </a-plane>
-
-                <!-- Prescription title -->
-                <a-text
-                    value="PRESCRIPTION"
-                    position="0 0.085 0.006"
-                    align="center"
-                    width="1.5"
-                    color="#3b82f6"
-                    material="shader: flat; depthTest: false">
-                </a-text>
-
-                <!-- Patient -->
-                <a-text
-                    value="Patient: John Doe"
-                    position="-0.125 0.055 0.006"
-                    align="left"
-                    width="0.8"
-                    color="#090d16"
-                    material="shader: flat; depthTest: false">
-                </a-text>
-
-                <!-- Date -->
-                <a-text
-                    value="Date: 08/07/2025"
-                    position="-0.125 0.025 0.006"
-                    align="left"
-                    width="0.8"
-                    color="#090d16"
-                    material="shader: flat; depthTest: false">
-                </a-text>
-
-                <!-- Medicine 1 -->
-                <a-text
-                    value="1. Amlodipine 5mg - Morning"
-                    position="-0.125 -0.005 0.006"
-                    align="left"
-                    width="0.72"
-                    color="#090d16"
-                    material="shader: flat; depthTest: false">
-                </a-text>
-
-                <!-- Medicine 2 -->
-                <a-text
-                    value="2. Metformin 500mg - Night"
-                    position="-0.125 -0.032 0.006"
-                    align="left"
-                    width="0.72"
-                    color="#090d16"
-                    material="shader: flat; depthTest: false">
-                </a-text>
-
-                <!-- Medicine 3 -->
-                <a-text
-                    value="3. Atorvastatin 10mg - Night"
-                    position="-0.125 -0.059 0.006"
-                    align="left"
-                    width="0.72"
-                    color="#090d16"
-                    material="shader: flat; depthTest: false">
-                </a-text>
-
-                <!-- Doctor signature -->
-                <a-text
-                    value="Doctor: Dr. Smith"
-                    position="0.02 -0.088 0.006"
-                    align="center"
-                    width="0.7"
-                    color="#090d16"
-                    material="shader: flat; depthTest: false">
-                </a-text>
-
-            </a-entity>
+            <!-- SCENE PROPS: PRESCRIPTION CARD DOCUMENT -->
+            <a-plane id="prescription-plane" position="0 0.01 0.22" rotation="-90 0 0" width="0.38" height="0.28">
+            </a-plane>
 
             <!-- SCENE PROPS: DIGITAL BEDSIDE CLOCK -->
             <a-entity id="clock-group" position="0 0.12 -0.32">
